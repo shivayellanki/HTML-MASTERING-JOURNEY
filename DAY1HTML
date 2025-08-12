@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100-line HTML Demo</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f5f7fb;}
+header{background:#4b6cb7;color:#fff;padding:20px}
+.container{max-width:900px;margin:20px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+nav ul{list-style:none;padding:0;margin:10px 0;display:flex;gap:10px}
+nav a{color:#fff;text-decoration:none;padding:6px 10px;background:rgba(255,255,255,.08);border-radius:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{padding:12px;border:1px solid #eee;border-radius:6px}
+footer{text-align:center;padding:12px;color:#666}
+button{padding:8px 12px;border:none;border-radius:6px;cursor:pointer}
+.primary{background:#4b6cb7;color:#fff}
+@media(max-width:600px){.grid{grid-template-columns:1fr}nav ul{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<h1>100-line HTML demo</h1>
+<nav>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main class="container" id="main">
+<section id="about" class="card">
+<h2>About this page</h2>
+<p>A sample HTML file that demonstrates semantic structure, responsive layout, and a bit of interactivity.</p>
+</section>
+<section id="features" class="grid">
+<div class="card">
+<h3>Feature A</h3>
+<p>Responsive grid and clean components.</p>
+<ul>
+<li>Semantic HTML</li>
+<li>Responsive CSS</li>
+<li>Small JS</li>
+</ul>
+</div>
+<div class="card">
+<h3>Feature B</h3>
+<p>Interactive button below adds a message to the list.</p>
+<button id="magicBtn" class="primary">Click me</button>
+</div>
+</section>
+<section id="list" class="card">
+<h2>Sample list</h2>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item</li>
+<li>Fourth item</li>
+</ol>
+</section>
+<section id="contact" class="card">
+<h2>Contact</h2>
+<form id="contactForm">
+<label for="name">Name</label><br>
+<input type="text" id="name" name="name" required><br><br>
+<label for="email">Email</label><br>
+<input type="email" id="email" name="email" required><br><br>
+<button type="submit" class="primary">Send</button>
+</form>
+</section>
+</main>
+<footer>
+<div class="container">
+<p>Made with ❤ — a tiny demo that hits 100 lines.</p>
+</div>
+</footer>
+<script>
+document.getElementById('magicBtn').addEventListener('click',function(){
+const p=document.createElement('p');
+p.textContent='Ta-da! You clicked the button.';
+p.className='card';
+document.getElementById('list').appendChild(p);
+});
+document.getElementById('contactForm').addEventListener('submit',function(e){
+e.preventDefault();
+const name=document.getElementById('name').value;
+alert('Thanks, '+name+'! Your message was sent (demo).');
+this.reset();
+});
+// Simple keyboard shortcut: press "n" to focus name input
+document.addEventListener('keydown',function(e){
+if(e.key==='n'&&document.getElementById('name'))document.getElementById('name').focus();
+});
+</script>
+<!-- End of demo -->
+</body>
+</html>
