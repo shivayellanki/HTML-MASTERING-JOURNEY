@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Blog - 100 Line Demo</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#fdfdfd;color:#333}
+header{background:#2d6a4f;color:white;padding:20px 0;text-align:center}
+nav ul{list-style:none;padding:0;margin:0;display:flex;justify-content:center;gap:20px}
+nav a{color:white;text-decoration:none;font-weight:bold}
+.hero{background:url('https://picsum.photos/id/1018/1000/400') center/cover;padding:60px 20px;text-align:center;color:white}
+.hero h1{font-size:2.5rem;margin:0}
+.hero p{max-width:600px;margin:10px auto}
+.container{max-width:900px;margin:auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{border:1px solid #ddd;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 5px rgba(0,0,0,0.05)}
+.card img{width:100%;height:150px;object-fit:cover}
+.card-body{padding:15px}
+button{padding:8px 12px;background:#2d6a4f;color:white;border:none;border-radius:5px;cursor:pointer}
+footer{text-align:center;padding:15px;color:#666;font-size:0.9em}
+form{display:flex;flex-direction:column;gap:10px}
+input,textarea{padding:8px;border:1px solid #ccc;border-radius:5px}
+@media(max-width:500px){.hero h1{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<header>
+<h1>Travel Tales</h1>
+<nav>
+<ul>
+<li><a href="#destinations">Destinations</a></li>
+<li><a href="#stories">Stories</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+<section class="hero">
+<h1>Adventure Awaits</h1>
+<p>Join me as I explore the world, one journey at a time.</p>
+</section>
+<main class="container">
+<section id="destinations">
+<h2>Popular Destinations</h2>
+<div class="grid">
+<div class="card">
+<img src="https://picsum.photos/id/1025/400/200" alt="Beach">
+<div class="card-body">
+<h3>Bali</h3>
+<p>Sunny beaches and serene temples.</p>
+<button>Read More</button>
+</div>
+</div>
+<div class="card">
+<img src="https://picsum.photos/id/1003/400/200" alt="Mountains">
+<div class="card-body">
+<h3>Swiss Alps</h3>
+<p>Snow-capped peaks and cozy cabins.</p>
+<button>Read More</button>
+</div>
+</div>
+<div class="card">
+<img src="https://picsum.photos/id/1011/400/200" alt="City">
+<div class="card-body">
+<h3>Tokyo</h3>
+<p>Where tradition meets modern life.</p>
+<button>Read More</button>
+</div>
+</div>
+</div>
+</section>
+<section id="stories">
+<h2>Latest Stories</h2>
+<p>From the hustle of city streets to the calm of mountain trails, every journey has a story.</p>
+</section>
+<section id="contact">
+<h2>Contact Me</h2>
+<form id="contactForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+</main>
+<footer>
+<p>&copy; 2025 Travel Tales by Explorer</p>
+</footer>
+<script>
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+alert("Thanks, "+document.getElementById("name").value+"! Your message has been sent.");
+this.reset();
+});
+</script>
+</body>
+</html>
