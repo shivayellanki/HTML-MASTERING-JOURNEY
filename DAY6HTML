@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SwiftTrade — Modern Trading Platform</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for demo charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <style>
+      :root { color-scheme: dark; }
+      html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; }
+      .glass { background: rgba(17, 25, 40, 0.75); box-shadow: 0 8px 32px rgba(0,0,0,.3); backdrop-filter: blur(10px); }
+      .ticker > div { animation: scroll 25s linear infinite; }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    </style>
+  </head>
+  <body class="bg-[#0a0f1a] text-slate-100">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a class="flex items-center gap-2" href="#">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 via-cyan-500 to-blue-500">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9Zm4.5 0 3 3 6-6 1.5 1.5-7.5 7.5-4.5-4.5Z"/></svg>
+          </span>
+          <span class="font-extrabold text-xl tracking-tight">SwiftTrade</span>
+        </a>
+        <nav class="hidden md:flex gap-6 text-sm text-white/80">
+          <a class="hover:text-white" href="#markets">Markets</a>
+          <a class="hover:text-white" href="#chart">Chart</a>
+          <a class="hover:text-white" href="#orders">Orders</a>
+          <a class="hover:text-white" href="#learn">Learn</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15">Download App</button>
+          <button class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 font-semibold shadow-lg shadow-emerald-600/25">Sign in</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero + KPI -->
+    <section class="relative overflow-hidden">
+      <div class="absolute -top-32 -right-24 h-72 w-72 rounded-full blur-3xl bg-cyan-600/30"></div>
+      <div class="absolute -bottom-40 -left-24 h-80 w-80 rounded-full blur-3xl bg-emerald-600/30"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">Trade faster. <span class="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">Invest smarter.</span></h1>
+            <p class="mt-4 text-white/70 max-w-xl">Zero‑commission equity & ETF trading, lightning‑fast charts, and pro‑grade tools—built for both beginners and pros.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#chart" class="px-5 py-3 rounded-2xl bg-white text-black font-semibold shadow hover:opacity-95">Open Web Terminal</a>
+              <a href="#markets" class="px-5 py-3 rounded-2xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 font-medium">Browse Markets</a>
+            </div>
+            <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+              <div class="rounded-2xl p-4 glass ring-1 ring-white/10">
+                <div class="text-2xl font-bold">0.00%</div>
+                <div class="text-xs text-white/60">Equity Commission</div>
+              </div>
+              <div class="rounded-2xl p-4 glass ring-1 ring-white/10">
+                <div class="text-2xl font-bold">₹100</div>
+                <div class="text-xs text-white/60">Account Minimum</div>
+              </div>
+              <div class="rounded-2xl p-4 glass ring-1 ring-white/10">
+                <div class="text-2xl font-bold">24×7</div>
+                <div class="text-xs text-white/60">Support</div>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden ring-1 ring-white/10 bg-white/5">
+              <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1551281044-8d8d2aa06d87?q=80&w=1600&auto=format&fit=crop" alt="Trading desk" />
+            </div>
+            <!-- floating mini order ticket -->
+            <div class="absolute -bottom-6 left-6 right-6 md:left-10 md:right-10 glass ring-1 ring-white/10 rounded-2xl p-4">
+              <div class="flex items-center gap-3">
+                <span class="text-sm">BTC/USDT</span>
+                <span class="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-300">+1.24%</span>
+                <span class="ml-auto text-sm">₹5,213,400</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded mt-2 overflow-hidden"><div class="h-full w-1/2 bg-gradient-to-r from-emerald-500 to-cyan-500"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Ticker -->
+    <section class="border-y border-white/10 bg-black/30">
+      <div class="ticker overflow-hidden whitespace-nowrap py-3">
+        <div class="inline-flex gap-6 px-4 min-w-[200%]">
+          <!-- Repeat items for seamless loop -->
+          <template id="ticker-template">
+            <span class="inline-flex items-center gap-2 text-sm">
+              <span class="text-white/60">SYMB</span>
+              <span class="font-semibold">123.45</span>
+              <span class="text-emerald-400">+0.84%</span>
+            </span>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Markets + Chart + Order panel -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-12 gap-6" id="markets">
+      <!-- Watchlist / Markets Table -->
+      <section class="lg:col-span-4">
+        <div class="flex items-end justify-between mb-3">
+          <h2 class="text-xl font-bold">Markets</h2>
+          <button class="text-sm text-white/70 hover:text-white">View all</button>
+        </div>
+        <div class="rounded-2xl ring-1 ring-white/10 bg-white/5 overflow-hidden">
+          <table class="w-full text-sm">
+            <thead class="bg-white/5 text-white/70">
+              <tr>
+                <th class="text-left p-3">Symbol</th>
+                <th class="text-right p-3">Last</th>
+                <th class="text-right p-3">24h</th>
+              </tr>
+            </thead>
+            <tbody id="market-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Chart -->
+      <section class="lg:col-span-5" id="chart">
+        <div class="flex items-end justify-between mb-3">
+          <h2 class="text-xl font-bold">BTC/USDT • 1H</h2>
+          <div class="flex gap-2 text-xs">
+            <button class="px-3 py-1 rounded-lg bg-white/10 ring-1 ring-white/15">1H</button>
+            <button class="px-3 py-1 rounded-lg hover:bg-white/10 ring-1 ring-white/10">4H</button>
+            <button class="px-3 py-1 rounded-lg hover:bg-white/10 ring-1 ring-white/10">1D</button>
+            <button class="px-3 py-1 rounded-lg hover:bg-white/10 ring-1 ring-white/10">1W</button>
+          </div>
+        </div>
+        <div class="rounded-2xl ring-1 ring-white/10 bg-white/5 p-3">
+          <canvas id="priceChart" height="220"></canvas>
+        </div>
+        <div class="mt-4 grid grid-cols-3 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-white/5 ring-1 ring-white/10">Open <span class="float-right font-semibold" id="open">—</span></div>
+          <div class="p-3 rounded-xl bg-white/5 ring-1 ring-white/10">High <span class="float-right font-semibold" id="high">—</span></div>
+          <div class="p-3 rounded-xl bg-white/5 ring-1 ring-white/10">Low <span class="float-right font-semibold" id="low">—</span></div>
+        </div>
+      </section>
+
+      <!-- Order Ticket -->
+      <section class="lg:col-span-3" id="orders">
+        <div class="rounded-2xl ring-1 ring-white/10 bg-white/5 p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-bold">Order</h2>
+            <div class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-md">Paper</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <button class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-semibold">Buy</button>
+            <button class="px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 font-semibold">Sell</button>
+          </div>
+          <label class="block text-sm text-white/70 mb-1">Symbol</label>
+          <input class="w-full mb-3 px-3 py-2 rounded-xl bg-black/40 ring-1 ring-white/15" value="BTCUSDT"/>
+
+          <label class="block text-sm text-white/70 mb-1">Order Type</label>
+          <select class="w-full mb-3 px-3 py-2 rounded-xl bg-black/40 ring-1 ring-white/15">
+            <option>Market</option>
+            <option>Limit</option>
+            <option>Stop</option>
+          </select>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Quantity</label>
+              <input type="number" min="0" step="0.001" class="w-full px-3 py-2 rounded-xl bg-black/40 ring-1 ring-white/15" value="0.01">
+            </div>
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Price</label>
+              <input type="number" min="0" step="0.5" class="w-full px-3 py-2 rounded-xl bg-black/40 ring-1 ring-white/15" placeholder="Market">
+            </div>
+          </div>
+
+          <div class="mt-3 flex items-center justify-between text-sm">
+            <span>Est. Cost</span>
+            <span class="font-semibold" id="estCost">—</span>
+          </div>
+
+          <button class="mt-4 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 font-semibold">Place Order</button>
+          <p class="text-[11px] text-white/50 mt-3">This is a demo UI. No real trades are executed.</p>
+        </div>
+
+        <div class="mt-6 rounded-2xl ring-1 ring-white/10 bg-white/5 p-4">
+          <h3 class="font-semibold mb-2">Positions</h3>
+          <div class="text-sm text-white/70">No open positions</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Education / CTA -->
+    <section id="learn" class="py-14 bg-white/5 ring-1 ring-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-black/40 ring-1 ring-white/10">
+            <h3 class="font-semibold">Learn the Basics</h3>
+            <p class="text-sm text-white/70 mt-1">Understand order types, risk, and portfolio diversification in under 10 minutes.</p>
+            <button class="mt-3 px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 text-sm">Start Course</button>
+          </div>
+          <div class="p-6 rounded-2xl bg-black/40 ring-1 ring-white/10">
+            <h3 class="font-semibold">Practice with Paper</h3>
+            <p class="text-sm text-white/70 mt-1">Use virtual funds to backtest ideas and refine your strategy—risk‑free.</p>
+            <button class="mt-3 px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 text-sm">Open Demo</button>
+          </div>
+          <div class="p-6 rounded-2xl bg-black/40 ring-1 ring-white/10">
+            <h3 class="font-semibold">Automate with APIs</h3>
+            <p class="text-sm text-white/70 mt-1">Connect REST or WebSocket to stream prices and place orders programmatically.</p>
+            <button class="mt-3 px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 text-sm">View Docs</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-emerald-500 via-cyan-500 to-blue-500">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12a9 9 0 1 1 9 9 9.01 9.01 0 0 1-9-9Zm4.5 0 3 3 6-6 1.5 1.5-7.5 7.5-4.5-4.5Z"/></svg>
+              </span>
+              <span class="font-bold">SwiftTrade</span>
+            </div>
+            <p class="text-sm text-white/60">© <span id="year"></span> SwiftTrade. Demo UI for educational purposes.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Company</h4>
+            <ul class="space-y-1 text-sm text-white/70">
+              <li><a class="hover:text-white" href="#">About</a></li>
+              <li><a class="hover:text-white" href="#">Careers</a></li>
+              <li><a class="hover:text-white" href="#">Press</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Resources</h4>
+            <ul class="space-y-1 text-sm text-white/70">
+              <li><a class="hover:text-white" href="#">Blog</a></li>
+              <li><a class="hover:text-white" href="#">Status</a></li>
+              <li><a class="hover:text-white" href="#">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Legal</h4>
+            <ul class="space-y-1 text-sm text-white/70">
+              <li><a class="hover:text-white" href="#">Terms</a></li>
+              <li><a class="hover:text-white" href="#">Privacy</a></li>
+              <li><a class="hover:text-white" href="#">Disclosures</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Demo Data & Scripts (no external APIs) -->
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Demo market rows
+      const rows = [
+        { s: 'BTCUSDT', p: 5213400, ch: +1.24 },
+        { s: 'ETHUSDT', p: 288400, ch: -0.52 },
+        { s: 'NIFTY', p: 24785.55, ch: +0.31 },
+        { s: 'RELIANCE', p: 2985.2, ch: +0.12 },
+        { s: 'TCS', p: 4112.9, ch: -0.18 },
+        { s: 'AAPL', p: 229.64, ch: +0.44 },
+        { s: 'TSLA', p: 242.11, ch: -1.02 },
+      ];
+
+      const tbody = document.getElementById('market-body');
+      tbody.innerHTML = rows.map(r => `
+        <tr class="hover:bg-white/5">
+          <td class="p-3">${r.s}</td>
+          <td class="p-3 text-right">${Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(r.p)}</td>
+          <td class="p-3 text-right ${r.ch>=0 ? 'text-emerald-400' : 'text-rose-400'}">${r.ch>0?'+':''}${r.ch.toFixed(2)}%</td>
+        </tr>
+      `).join('');
+
+      // Ticker items (duplicated sequence for infinite loop)
+      const tickerStrip = document.querySelector('.ticker > div');
+      const makeChip = (r) => `
+        <span class="inline-flex items-center gap-2 text-sm">
+          <span class="text-white/60">${r.s}</span>
+          <span class="font-semibold">${Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(r.p)}</span>
+          <span class="${r.ch>=0 ? 'text-emerald-400' : 'text-rose-400'}">${r.ch>0?'+':''}${r.ch.toFixed(2)}%</span>
+        </span>`;
+      const loop = [...rows, ...rows, ...rows, ...rows].map(makeChip).join('<span class="opacity-30">|</span>');
+      tickerStrip.innerHTML = loop;
+
+      // Demo OHLC-like line chart
+      const ctx = document.getElementById('priceChart');
+      const labels = Array.from({length: 48}, (_,i)=> i+1);
+      const base = 5200000;
+      let price = base;
+      const data = labels.map(()=> price += (Math.random()-0.45)*8000);
+      const open = data[0], high = Math.max(...data), low = Math.min(...data);
+      document.getElementById('open').textContent = Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(open);
+      document.getElementById('high').textContent = Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(high);
+      document.getElementById('low').textContent = Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(low);
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Price',
+            data,
+            tension: 0.35,
+            borderWidth: 2,
+            pointRadius: 0,
+          }]
+        },
+        options: {
+          animation: false,
+          responsive: true,
+          maintainAspectRatio: false,
+          elements: { line: { borderColor: '#22d3ee' } },
+          scales: {
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.6)' } },
+            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.6)' } },
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Estimate cost calc (simple demo)
+      const qtyInput = document.querySelector('input[type=number]');
+      const estCost = document.getElementById('estCost');
+      const last = rows[0].p; // BTC price demo
+      const updateCost = () => {
+        const q = parseFloat(qtyInput.value || '0');
+        estCost.textContent = '₹' + Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(q * last);
+      };
+      qtyInput.addEventListener('input', updateCost);
+      updateCost();
+    </script>
+  </body>
+</html>
