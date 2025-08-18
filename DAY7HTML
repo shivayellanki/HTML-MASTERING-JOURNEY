@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Diaries</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f3f6f8; margin: 0; padding: 0; }
+        header { background-color: #2b5876; color: white; padding: 20px; text-align: center; }
+        nav { background-color: #4e4376; padding: 10px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; }
+        nav a:hover { text-decoration: underline; }
+        .content { padding: 20px; max-width: 900px; margin: auto; }
+        .card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        img { max-width: 100%; border-radius: 8px; }
+        footer { background-color: #2b5876; color: white; text-align: center; padding: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌍 Wanderlust Diaries</h1>
+    <p>Exploring the world, one city at a time.</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Destinations</a>
+    <a href="#">Tips</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="content">
+    <div class="card">
+        <h2>🏔 Exploring the Swiss Alps</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Swiss Alps">
+        <p>The Swiss Alps are a breathtaking wonder with snowy peaks, lush valleys, and charming villages. Perfect for skiing in winter and hiking in summer!</p>
+    </div>
+
+    <div class="card">
+        <h2>🏝 Maldives – Paradise on Earth</h2>
+        <img src="https://via.placeholder.com/800x400" alt="Maldives">
+        <p>Crystal clear waters, overwater villas, and tropical bliss await you in the Maldives. A dream vacation spot for couples and families.</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Wanderlust Diaries | Made with ❤ for travelers</p>
+</footer>
+
+</body>
+</html>
