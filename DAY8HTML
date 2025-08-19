@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Recipes</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #fffaf0; }
+        header { background-color: #ff7f50; color: white; padding: 20px; text-align: center; }
+        nav { background-color: #ffa07a; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        .container { padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .recipe-card { background: white; padding: 15px; width: 300px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        img { max-width: 100%; border-radius: 8px; }
+        footer { background-color: #ff7f50; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍳 Delicious Recipes</h1>
+    <p>Your guide to cooking tasty meals at home</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Breakfast</a>
+    <a href="#">Lunch</a>
+    <a href="#">Dinner</a>
+</nav>
+
+<div class="container">
+    <div class="recipe-card">
+        <img src="https://via.placeholder.com/300x200" alt="Pancakes">
+        <h3>Fluffy Pancakes</h3>
+        <p>Soft and airy pancakes served with maple syrup and fresh berries. Perfect for a weekend breakfast!</p>
+    </div>
+
+    <div class="recipe-card">
+        <img src="https://via.placeholder.com/300x200" alt="Pasta">
+        <h3>Creamy Alfredo Pasta</h3>
+        <p>Rich and creamy Alfredo pasta made with fresh parmesan and garlic. A quick and satisfying dinner.</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Delicious Recipes | Made with 🍲 and ❤</p>
+</footer>
+
+</body>
+</html>
